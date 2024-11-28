@@ -21,6 +21,9 @@ hx-post='/input'
 hx-target='.display'
 >
 <div class="flex">
+@template.BaseInput(name = "DAY", abv = "DD")
+@template.BaseInput(name = "MONTH", abv = "MM")
+@template.BaseInput(name = "YEAR", abv = "YYYY")
 </div>
 <div class="button_container">
   <hr>

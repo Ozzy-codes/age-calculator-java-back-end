@@ -12,12 +12,12 @@ public class AppController {
       config.fileRenderer(new JavalinJte());
       config.staticFiles.add("/static");
     });
-    app.get("/", this::test);
+    app.get("/", this::renderHome);
 
     return app;
   }
 
-  private void test(Context ctx) {
-    ctx.render("test.jte");
+  private void renderHome(Context ctx) {
+    ctx.render("HomePage.jte");
   }
 }
