@@ -1,24 +1,26 @@
 package com.mycompany.app.util;
 
 import com.mycompany.app.model.InputDate;
-import com.mycompany.app.model.ValidateInput;
+import com.mycompany.app.model.ValidateResultObject;
 
 import java.util.*;
 
 public class Validate {
-  public ValidateInput returnObj;
+  public ValidateResultObject returnObj = new ValidateResultObject();
   public InputDate date;
   public String partialVoidMessage = "Must be a valid ";
   public String pastMessage = "Must be in the past";
   public String requiredMessage = "This field is required";
 
-  public ValidateInput day(InputDate date) {
-    if (Integer.toString(date.getDay()) == " ") {
+  public ValidateResultObject day(String day, String month, String year) {
+    // TODO: trim incoming strings before they hit methods
+    if (day == "") {
       returnObj.setpassing(false);
       returnObj.setMessage(requiredMessage);
       return returnObj;
     }
     ;
+    InputDate date = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
 
     Calendar dateObj = Calendar.getInstance();
     dateObj.set(date.getYear() + 1900, date.getMonth() - 1, date.getDay());
