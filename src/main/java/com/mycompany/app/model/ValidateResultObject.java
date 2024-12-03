@@ -1,9 +1,17 @@
 package com.mycompany.app.model;
 
-public class ValidateInput {
+public class ValidateResultObject {
   public boolean passing;
 
   public String message;
+
+  public ValidateResultObject() {
+  }
+
+  public ValidateResultObject(boolean passing, String message) {
+    this.passing = passing;
+    this.message = message;
+  }
 
   public boolean ispassing() {
     return passing;
@@ -23,7 +31,7 @@ public class ValidateInput {
 
   @Override
   public String toString() {
-    return "ValidateInput {" +
+    return "ValidateResultObject {" +
         "passing= " + passing +
         " , message= " + message +
         " }";
