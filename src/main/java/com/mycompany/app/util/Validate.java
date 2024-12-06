@@ -19,15 +19,16 @@ public class Validate {
       return dayResultReturnObj;
     }
     ;
-    InputDate date = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
+
+    date = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
 
     Calendar dateObj = Calendar.getInstance();
-    dateObj.set(date.getYear() + 1900, date.getMonth() - 1, date.getDay());
+    dateObj.set(date.getYear(), date.getMonth() - 1, date.getDay());
 
-    if (dateObj.get(Calendar.YEAR) - 1900 == Calendar.getInstance().get(Calendar.YEAR) - 1900 &&
+    if (dateObj.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
         dateObj.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
-        dateObj.getTime().getTime() > Calendar.getInstance().getTime().getTime()) {
-      dayResultReturnObj.message = pastMessage;
+        dateObj.getTimeInMillis() > Calendar.getInstance().getTimeInMillis()) {
+      dayResultReturnObj.setMessage(pastMessage);
     }
     ;
 
@@ -36,7 +37,7 @@ public class Validate {
     }
     ;
 
-    if (dayResultReturnObj.message.length() > 1)
+    if (dayResultReturnObj.getMessage().length() > 1)
       dayResultReturnObj.setpassing(false);
     return dayResultReturnObj;
   }

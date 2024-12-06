@@ -1,9 +1,9 @@
 package com.mycompany.app.model;
 
 public class ValidateResultObject {
-  public boolean passing;
+  private boolean passing;
 
-  public String message;
+  private String message;
 
   public ValidateResultObject() {
   }
