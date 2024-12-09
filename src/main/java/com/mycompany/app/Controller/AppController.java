@@ -1,5 +1,6 @@
 package com.mycompany.app.Controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.mycompany.app.model.ValidateResultObject;
@@ -32,10 +33,17 @@ public class AppController {
     String formDay = ctx.formParam("DD");
     String formMonth = ctx.formParam("MM");
     String formYear = ctx.formParam("YYYY");
+    Map<String, String> dayFailModel = new HashMap<>();
+    dayFailModel.put("name", "DAY");
+    dayFailModel.put("abv", "DD");
+    dayFailModel.put("value", formDay);
 
     Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
 
     System.out.println(resultMap);
-    ctx.result("post sucessful");
+    dayFailModel.put("msg", "testing msg");
+    ctx.header("hx-reswap", "none");
+    ctx.status(422);
+    ctx.render("FailInput.jte", dayFailModel);
   }
 }
