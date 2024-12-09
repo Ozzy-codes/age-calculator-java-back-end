@@ -1,5 +1,8 @@
 package com.mycompany.app.Controller;
 
+import java.util.Map;
+
+import com.mycompany.app.model.ValidateResultObject;
 import com.mycompany.app.service.InputService;
 
 import io.javalin.Javalin;
@@ -30,7 +33,9 @@ public class AppController {
     String formMonth = ctx.formParam("MM");
     String formYear = ctx.formParam("YYYY");
 
-    is.validate(formDay, formMonth, formYear);
+    Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
+
+    System.out.println(resultMap);
     ctx.result("post sucessful");
   }
 }
