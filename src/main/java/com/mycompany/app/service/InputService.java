@@ -12,12 +12,11 @@ public class InputService {
     public InputService() {
     }
 
-    // TODO: return a HashMap of result objs that can return contents to identify
-    // which views will be sent
     public Map<String, ValidateResultObject> validate(String day, String month, String year) {
         String sanitizedDay = day.trim();
         String sanitizedMonth = month.trim();
         String sanitizedYear = year.trim();
+        // Map<> returnMap = new HashMap<>(Map.of("model", mapModel, "passing"));
 
         Map<String, ValidateResultObject> validationResultMap = new HashMap<String, ValidateResultObject>();
 
