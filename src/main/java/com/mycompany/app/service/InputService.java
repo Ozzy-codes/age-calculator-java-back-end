@@ -12,6 +12,7 @@ public class InputService {
     public InputService() {
     }
 
+    // TODO: return to controller data relevate for ResponseInput View
     public Map<String, ValidateResultObject> validate(String day, String month, String year) {
         String sanitizedDay = day.trim();
         String sanitizedMonth = month.trim();
