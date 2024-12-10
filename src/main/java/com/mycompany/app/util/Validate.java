@@ -14,7 +14,7 @@ public class Validate {
   public ValidateResultObject day(String day, String month, String year) {
     ValidateResultObject dayResultReturnObj = new ValidateResultObject(true, "");
     if (day == "") {
-      dayResultReturnObj.setpassing(false);
+      dayResultReturnObj.setPassing(false);
       dayResultReturnObj.setMessage(requiredMessage);
       return dayResultReturnObj;
     }
@@ -38,7 +38,7 @@ public class Validate {
     ;
 
     if (dayResultReturnObj.getMessage().length() > 1)
-      dayResultReturnObj.setpassing(false);
+      dayResultReturnObj.setPassing(false);
     return dayResultReturnObj;
   }
 

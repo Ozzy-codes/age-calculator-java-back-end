@@ -13,11 +13,11 @@ public class ValidateResultObject {
     this.message = message;
   }
 
-  public boolean ispassing() {
+  public boolean isPassing() {
     return passing;
   }
 
-  public void setpassing(boolean pass) {
+  public void setPassing(boolean pass) {
     this.passing = pass;
   }
 
