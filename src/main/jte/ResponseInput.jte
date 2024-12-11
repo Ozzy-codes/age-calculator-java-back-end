@@ -1,32 +1,43 @@
+<!-- NOTE: need fullyqualified name for jte import -->
+@import com.mycompany.app.model.ValidateResultObject
+
+@param String inputDayValue
+@param String inputMonthValue
+@param String inputYearValue
+
+@param ValidateResultObject dayResult
+@param ValidateResultObject monthResult
+@param ValidateResultObject yearResult
+
 <!-- Day component -->
 <div id='DAY-card' hx-swap-oob='true'>
   <label>
-    <div class="${dayResult.getPassing() != true ? " warning" : "" }">DAY</div>
-    <input type="text" class="margin-top ${dayResult.getPassing() != true ? " bg_warning" : "" }"
+    <div class="${dayResult.isPassing() != true ? " warning" : null }">DAY</div>
+    <input type="text" class="margin-top ${dayResult.isPassing() != true ? " bg_warning" : null }"
       value="${inputDayValue}" placeholder="DD" name="DD" />
   </label>
-  <div class="${dayResult.getPassing() != true ? " margin-top warning" : "" }" id='DAY-message'>
+  <div class="${dayResult.isPassing() != true ? " margin-top warning" : null }" id='DAY-message'>
     ${dayResult.getMessage()}</div>
 </div>
 
 <!-- Month component -->
 <div id='MONTH-card' hx-swap-oob='true'>
   <label>
-    <div class="${monthResult.getPassing() != true ? " warning" : "" }">MONTH</div>
-    <input type="text" class="margin-top ${monthResult.getPassing() != true ? " bg_warning" : "" }"
+    <div class="${monthResult.isPassing() != true ? " warning" : null }">MONTH</div>
+    <input type="text" class="margin-top ${monthResult.isPassing() != true ? " bg_warning" : null }"
       value="${inputMonthValue}" placeholder="MM" name="MM" />
   </label>
-  <div class="${monthResult.getPassing() != true ? " margin-top warning" : "" }" id='MONTH-message'>
+  <div class="${monthResult.isPassing() != true ? " margin-top warning" : null }" id='MONTH-message'>
     ${monthResult.getMessage()}</div>
 </div>
 
 <!-- Year component -->
 <div id='YEAR-card' hx-swap-oob='true'>
   <label>
-    <div class="${yearResult.getPassing() != true ? " warning" : "" }">YEAR</div>
-    <input type="text" class="margin-top ${yearResult.getPassing() != true ? " bg_warning" : "" }"
+    <div class="${yearResult.isPassing() != true ? " warning" : null }">YEAR</div>
+    <input type="text" class="margin-top ${yearResult.isPassing() != true ? " bg_warning" : null }"
       value="${inputYearValue}" placeholder="YYYY" name="YYYY" />
   </label>
-  <div class="${yearResult.getPassing() != true ? " margin-top warning" : "" }" id='YEAR-message'>
+  <div class="${yearResult.isPassing() != true ? " margin-top warning" : null }" id='YEAR-message'>
     ${yearResult.getMessage()}</div>
 </div>
