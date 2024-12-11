@@ -37,4 +37,27 @@ public class Validate {
     return dayResultReturnObj;
   }
 
+  public ValidateResultObject month(String day, String month, String year) {
+    ValidateResultObject monthResultReturnObj = new ValidateResultObject(true, "");
+    if (month == "") {
+      monthResultReturnObj.setPassing(false);
+      monthResultReturnObj.setMessage(requiredMessage);
+      return monthResultReturnObj;
+    }
+
+    InputDate inputData = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
+    Calendar currentDate = Calendar.getInstance();
+
+    if (inputData.getYear() == currentDate.get(Calendar.YEAR) &&
+        inputData.getMonth() > currentDate.get(Calendar.MONTH) + 1) {
+      monthResultReturnObj.setMessage(pastMessage);
+    }
+    if (inputData.getMonth() < 1 || inputData.getMonth() > 12) {
+      monthResultReturnObj.setMessage(partialVoidMessage + "month");
+    }
+    if (monthResultReturnObj.getMessage().length() > 1)
+      monthResultReturnObj.setPassing(false);
+
+    return monthResultReturnObj;
+  }
 }
