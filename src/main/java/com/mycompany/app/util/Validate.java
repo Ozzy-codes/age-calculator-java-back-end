@@ -6,7 +6,6 @@ import com.mycompany.app.model.ValidateResultObject;
 import java.util.*;
 
 public class Validate {
-  private InputDate date;
   private String partialVoidMessage = "Must be a valid ";
   private String pastMessage = "Must be in the past";
   private String requiredMessage = "This field is required";
@@ -20,19 +19,15 @@ public class Validate {
     }
     ;
 
-    date = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
+    InputDate inputData = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
 
-    Calendar dateObj = Calendar.getInstance();
-    dateObj.set(date.getYear(), date.getMonth() - 1, date.getDay());
+    Calendar currentDate = Calendar.getInstance();
 
-    if (dateObj.get(Calendar.YEAR) == Calendar.getInstance().get(Calendar.YEAR) &&
-        dateObj.get(Calendar.MONTH) == Calendar.getInstance().get(Calendar.MONTH) &&
-        dateObj.getTimeInMillis() > Calendar.getInstance().getTimeInMillis()) {
+    if (inputData.getYear() == currentDate.get(Calendar.YEAR) &&
+        inputData.getMonth() == currentDate.get(Calendar.MONTH) + 1 &&
+        inputData.getDay() > currentDate.get(Calendar.DAY_OF_MONTH)) {
       dayResultReturnObj.setMessage(pastMessage);
-    }
-    ;
-
-    if (dateObj.get(Calendar.DAY_OF_MONTH) != date.getDay()) {
+    } else if (currentDate.get(Calendar.DAY_OF_MONTH) != inputData.getDay()) {
       dayResultReturnObj.setMessage(partialVoidMessage + "day");
     }
     ;
