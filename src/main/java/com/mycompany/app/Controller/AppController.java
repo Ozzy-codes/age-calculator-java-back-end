@@ -33,15 +33,18 @@ public class AppController {
     String formDay = ctx.formParam("DD");
     String formMonth = ctx.formParam("MM");
     String formYear = ctx.formParam("YYYY");
-    Map<String, String> dayFailModel = new HashMap<>(Map.of("name", "DAY", "abv", "DD", "value", formDay));
-    Map<String, String> dayPassModel = new HashMap<>(Map.of("name", "DAY", "abv", "DD", "value", formDay));
+    Map<String, Object> model = new HashMap<>(
+        Map.of("inputDayValue", formDay, "inputMonthValue", formMonth, "inputYearValue", formYear));
 
     Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
 
     System.out.println(resultMap);
-    dayFailModel.put("msg", "testing msg");
+
+    model.put("dayResult", resultMap.get("dayResultObject"));
+    model.put("monthResult", resultMap.get("monthResultObject"));
+    model.put("yearResult", resultMap.get("yearResultObject"));
     ctx.header("hx-reswap", "none");
     ctx.status(422);
-    ctx.render("FailInput.jte", dayFailModel);
+    ctx.render("ResponseInput.jte", model);
   }
 }
