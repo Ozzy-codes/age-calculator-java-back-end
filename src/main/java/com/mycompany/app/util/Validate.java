@@ -5,6 +5,7 @@ import com.mycompany.app.model.ValidateResultObject;
 
 import java.util.*;
 
+//  TODO: Handle nonNumeral characters entered in input
 public class Validate {
   private String partialVoidMessage = "Must be a valid ";
   private String pastMessage = "Must be in the past";
@@ -94,11 +95,11 @@ public class Validate {
     if (inputData.getYear() > currentDate.get(Calendar.YEAR)) {
       yearResultReturnObj.setMessage(pastMessage);
     }
-    if (year.length() < 4 || year.length() > 4) {
-      yearResultReturnObj.setMessage("Please enter a year in YYYY format");
-    }
     if (inputData.getYear() < 1) {
       yearResultReturnObj.setMessage(partialVoidMessage + "year");
+    }
+    if (year.length() < 4 || year.length() > 4) {
+      yearResultReturnObj.setMessage("Please enter a year in YYYY format");
     }
     if (yearResultReturnObj.getMessage().length() > 1)
       yearResultReturnObj.setPassing(false);
