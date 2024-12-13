@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Calendar;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.mycompany.app.model.ValidateResultObject;
@@ -12,7 +13,7 @@ public class ValidateTest {
   Validate validate = new Validate();
 
   @Test
-  public void day_passInEmptyString() {
+  public void day_passInEmptyDayString() {
     String day = "";
     String month = "2";
     String year = "2023";
@@ -23,6 +24,60 @@ public class ValidateTest {
 
     assertEquals(expectedObj.isPassing(), returnObj.isPassing());
     assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void day_passInEmptyMonthString() {
+    String day = "1";
+    String month = "";
+    String year = "2023";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.day(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
+  }
+
+  @Test
+  public void day_passInEmptyYearString() {
+    String day = "1";
+    String month = "2";
+    String year = "";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.day(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
+  }
+
+  @Test
+  public void day_passInEmptyYearAndMonthStrings() {
+    String day = "1";
+    String month = "";
+    String year = "";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.day(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
   }
 
   @Test

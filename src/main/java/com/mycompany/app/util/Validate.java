@@ -19,6 +19,11 @@ public class Validate {
     }
     ;
 
+    if (month == "")
+      month = "-1";
+    if (year == "")
+      year = "-1";
+
     InputDate inputData = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
 
     Calendar currentDate = Calendar.getInstance();
@@ -27,7 +32,11 @@ public class Validate {
         inputData.getMonth() == currentDate.get(Calendar.MONTH) + 1 &&
         inputData.getDay() > currentDate.get(Calendar.DAY_OF_MONTH)) {
       dayResultReturnObj.setMessage(pastMessage);
-    } else if (currentDate.get(Calendar.DAY_OF_MONTH) != inputData.getDay()) {
+    }
+
+    currentDate.set(inputData.getYear(), inputData.getMonth() - 1, inputData.getDay());
+
+    if (currentDate.get(Calendar.DAY_OF_MONTH) != inputData.getDay()) {
       dayResultReturnObj.setMessage(partialVoidMessage + "day");
     }
     ;
