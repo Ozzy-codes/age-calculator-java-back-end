@@ -38,8 +38,6 @@ public class AppController {
 
     Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
 
-    System.out.println(resultMap);
-
     model.put("dayResult", resultMap.get("dayResultObject"));
     model.put("monthResult", resultMap.get("monthResultObject"));
     model.put("yearResult", resultMap.get("yearResultObject"));

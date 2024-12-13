@@ -20,10 +20,11 @@ public class InputService {
     Map<String, ValidateResultObject> validationResultMap = new HashMap<String, ValidateResultObject>();
 
     ValidateResultObject dayResult = validator.day(sanitizedDay, sanitizedMonth, sanitizedYear);
-    // TODO: conduct month and year tests, return put objects on Map
+    ValidateResultObject monthResult = validator.month(sanitizedDay, sanitizedMonth, sanitizedYear);
+    // TODO: conduct year tests, put objects on Map
 
     validationResultMap.put("dayResultObject", dayResult);
-    validationResultMap.put("monthResultObject", new ValidateResultObject(true, ""));
+    validationResultMap.put("monthResultObject", monthResult);
     validationResultMap.put("yearResultObject", new ValidateResultObject(true, ""));
     return validationResultMap;
   }
