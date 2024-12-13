@@ -38,11 +38,14 @@ public class AppController {
 
     Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
 
-    model.put("dayResult", resultMap.get("dayResultObject"));
-    model.put("monthResult", resultMap.get("monthResultObject"));
-    model.put("yearResult", resultMap.get("yearResultObject"));
-    ctx.header("hx-reswap", "none");
-    ctx.status(422);
-    ctx.render("ResponseInput.jte", model);
+    if (!resultMap.get("dayResultObject").isPassing() || !resultMap.get("monthResultObject").isPassing()
+        || !resultMap.get("yearResultObject").isPassing()) {
+      model.put("dayResult", resultMap.get("dayResultObject"));
+      model.put("monthResult", resultMap.get("monthResultObject"));
+      model.put("yearResult", resultMap.get("yearResultObject"));
+      ctx.header("hx-reswap", "none");
+      ctx.status(422);
+      ctx.render("ResponseInput.jte", model);
+    }
   }
 }

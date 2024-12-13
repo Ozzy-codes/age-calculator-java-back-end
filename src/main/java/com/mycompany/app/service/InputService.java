@@ -9,9 +9,6 @@ import com.mycompany.app.util.Validate;
 public class InputService {
   private Validate validator = new Validate();
 
-  public InputService() {
-  }
-
   public Map<String, ValidateResultObject> validate(String day, String month, String year) {
     String sanitizedDay = day.trim();
     String sanitizedMonth = month.trim();
