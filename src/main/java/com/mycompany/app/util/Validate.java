@@ -74,4 +74,35 @@ public class Validate {
 
     return monthResultReturnObj;
   }
+
+  public ValidateResultObject year(String day, String month, String year) {
+    ValidateResultObject yearResultReturnObj = new ValidateResultObject(true, "");
+    if (year == "") {
+      yearResultReturnObj.setPassing(false);
+      yearResultReturnObj.setMessage(requiredMessage);
+      return yearResultReturnObj;
+    }
+
+    if (day == "")
+      day = "-1";
+    if (month == "")
+      month = "-1";
+
+    InputDate inputData = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
+    Calendar currentDate = Calendar.getInstance();
+
+    if (inputData.getYear() > currentDate.get(Calendar.YEAR)) {
+      yearResultReturnObj.setMessage(pastMessage);
+    }
+    if (year.length() < 4 || year.length() > 4) {
+      yearResultReturnObj.setMessage("Please enter a year in YYYY format");
+    }
+    if (inputData.getYear() < 1) {
+      yearResultReturnObj.setMessage(partialVoidMessage + "year");
+    }
+    if (yearResultReturnObj.getMessage().length() > 1)
+      yearResultReturnObj.setPassing(false);
+
+    return yearResultReturnObj;
+  }
 }

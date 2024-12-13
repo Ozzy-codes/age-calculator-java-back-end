@@ -256,4 +256,116 @@ public class ValidateTest {
     assertEquals(expectedObj.isPassing(), returnObj.isPassing());
     assertEquals(expectedObj.getMessage(), returnObj.getMessage());
   }
+
+  @Test
+  public void year_passInEmptyYearString() {
+    String day = "1";
+    String month = "2";
+    String year = "";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "This field is required");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInEmptyDayString() {
+    String day = "";
+    String month = "2";
+    String year = "2024";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInEmptyMonthString() {
+    String day = "1";
+    String month = "";
+    String year = "2024";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInEmptyMonthAndDayString() {
+    String day = "";
+    String month = "";
+    String year = "2024";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInFurtureYear() {
+    String day = "1";
+    String month = "1";
+    String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR) + 1);
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be in the past");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInYearLessThan4Digits() {
+    String day = "1";
+    String month = "1";
+    String year = "123";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Please enter a year in YYYY format");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInYearGreaterThan4Digits() {
+    String day = "1";
+    String month = "1";
+    String year = "12345";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Please enter a year in YYYY format");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInYearZero() {
+    String day = "1";
+    String month = "1";
+    String year = "0000";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be a valid year");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
 }
