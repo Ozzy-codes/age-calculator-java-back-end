@@ -37,4 +37,9 @@ public class CalculatedBirthday {
   public void setDay(Integer day) {
     this.day = day;
   }
+
+  @Override
+  public String toString() {
+    return "CalculatedBirthday [year=" + year + ", month=" + month + ", day=" + day + "]";
+  }
 }
