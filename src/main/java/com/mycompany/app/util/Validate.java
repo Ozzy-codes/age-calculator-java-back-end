@@ -54,6 +54,11 @@ public class Validate {
       return monthResultReturnObj;
     }
 
+    if (day == "")
+      day = "-1";
+    if (year == "")
+      year = "-1";
+
     InputDate inputData = new InputDate(Integer.parseInt(day), Integer.parseInt(month), Integer.parseInt(year));
     Calendar currentDate = Calendar.getInstance();
 

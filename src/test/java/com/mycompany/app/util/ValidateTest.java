@@ -143,7 +143,7 @@ public class ValidateTest {
   }
 
   @Test
-  public void month_passInEmptyString() {
+  public void month_passInEmptyMonthString() {
     String day = "1";
     String month = "";
     String year = "2023";
@@ -154,6 +154,60 @@ public class ValidateTest {
 
     assertEquals(expectedObj.isPassing(), returnObj.isPassing());
     assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void month_passInEmptyDayString() {
+    String day = "";
+    String month = "1";
+    String year = "2023";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.month(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
+  }
+
+  @Test
+  public void month_passInEmptyYearString() {
+    String day = "1";
+    String month = "1";
+    String year = "";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.month(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
+  }
+
+  @Test
+  public void month_passInEmptyYearAndDayString() {
+    String day = "";
+    String month = "1";
+    String year = "";
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+    ValidateResultObject returnedObj = new ValidateResultObject();
+
+    try {
+      returnedObj = validate.month(day, month, year);
+    } catch (Exception e) {
+      Assert.fail("Should not throw exception");
+    }
+
+    assertEquals(expectedObj.isPassing(), returnedObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnedObj.getMessage());
   }
 
   @Test
