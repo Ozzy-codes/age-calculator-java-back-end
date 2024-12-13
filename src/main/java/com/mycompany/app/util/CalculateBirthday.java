@@ -10,10 +10,10 @@ public class CalculateBirthday {
     CalculatedBirthday birthday = new CalculatedBirthday();
     Calendar currentDate = Calendar.getInstance();
     Integer currentYear = currentDate.get(Calendar.YEAR);
-    Integer currentMonth = currentDate.get(Calendar.MONTH);
+    Integer currentMonth = currentDate.get(Calendar.MONTH) + 1;
     Integer currentDay = currentDate.get(Calendar.DATE);
 
-    Integer monthDifference = month - 1 - currentMonth;
+    Integer monthDifference = month - currentMonth;
     Integer dayDifference = day - currentDay;
 
     if (monthDifference == 0) {
