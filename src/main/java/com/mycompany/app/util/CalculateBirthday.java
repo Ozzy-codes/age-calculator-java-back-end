@@ -29,6 +29,21 @@ public class CalculateBirthday {
         birthday.setDay(currentDay - day);
       }
       return birthday;
+    } else if (monthDifference > 0) {
+      Integer calculatedMonth = 11 - month + currentMonth;
+      birthday.setYear(currentYear - year - 1);
+      if (dayDifference == 0) {
+        birthday.setDay(0);
+        birthday.setMonth(calculatedMonth + 1);
+      } else if (dayDifference > 0) {
+        currentDate.set(currentYear, currentMonth, 0);
+        birthday.setDay(currentDate.getActualMaximum(Calendar.DATE) - day + currentDay);
+        birthday.setMonth(calculatedMonth);
+      } else {
+        birthday.setDay(currentDay - day);
+        birthday.setMonth(calculatedMonth + 1);
+      }
+      return birthday;
     }
 
     return birthday;
