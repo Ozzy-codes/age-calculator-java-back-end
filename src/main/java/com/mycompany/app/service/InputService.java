@@ -21,11 +21,12 @@ public class InputService {
 
     ValidateResultObject dayResult = validator.day(sanitizedDay, sanitizedMonth, sanitizedYear);
     ValidateResultObject monthResult = validator.month(sanitizedDay, sanitizedMonth, sanitizedYear);
-    // TODO: conduct year tests, put objects on Map
+    ValidateResultObject yearResult = validator.year(sanitizedDay, sanitizedMonth, sanitizedYear);
 
     validationResultMap.put("dayResultObject", dayResult);
     validationResultMap.put("monthResultObject", monthResult);
-    validationResultMap.put("yearResultObject", new ValidateResultObject(true, ""));
+    validationResultMap.put("yearResultObject", yearResult);
+
     return validationResultMap;
   }
 }
