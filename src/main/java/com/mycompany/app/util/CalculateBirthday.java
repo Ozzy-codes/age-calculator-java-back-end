@@ -13,7 +13,7 @@ public class CalculateBirthday {
     Integer currentMonth = currentDate.get(Calendar.MONTH);
     Integer currentDay = currentDate.get(Calendar.DATE);
 
-    Integer monthDifference = month - currentMonth;
+    Integer monthDifference = month - 1 - currentMonth;
     Integer dayDifference = day - currentDay;
 
     if (monthDifference == 0) {
