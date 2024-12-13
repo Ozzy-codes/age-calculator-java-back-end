@@ -13,6 +13,62 @@ public class ValidateTest {
   Validate validate = new Validate();
 
   @Test
+  public void day_passInNonNumeralDaySymbol() {
+    String day = "#";
+    String month = "2";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be a valid day");
+
+    ValidateResultObject returnObj = validate.day(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void day_passInNonNumeralMonthSymbol() {
+    String day = "1";
+    String month = "#1";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.day(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void day_passInNonNumeralYearSymbol() {
+    String day = "1";
+    String month = "1";
+    String year = "2#23";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.day(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void day_passInNonNumeralYearAndMonthSymbol() {
+    String day = "1";
+    String month = "#0";
+    String year = "2#23";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.day(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
   public void day_passInEmptyDayString() {
     String day = "";
     String month = "2";
@@ -143,6 +199,62 @@ public class ValidateTest {
   }
 
   @Test
+  public void month_passInNonNumeralSymbolInMonth() {
+    String day = "1";
+    String month = "1#";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be a valid month");
+
+    ValidateResultObject returnObj = validate.month(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void month_passInNonNumeralSymbolInDay() {
+    String day = "2#";
+    String month = "1";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.month(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void month_passInNonNumeralSymbolInYear() {
+    String day = "2";
+    String month = "1";
+    String year = "20#3";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.month(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void month_passInNonNumeralSymbolInYearAndDay() {
+    String day = "2#";
+    String month = "1";
+    String year = "20#3";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.month(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
   public void month_passInEmptyMonthString() {
     String day = "1";
     String month = "";
@@ -252,6 +364,62 @@ public class ValidateTest {
     ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be a valid month");
 
     ValidateResultObject returnObj = validate.month(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInNonNumeralSymbolInYear() {
+    String day = "1";
+    String month = "1";
+    String year = "2#23";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(false, "Must be a valid year");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInNonNumeralSymbolInDay() {
+    String day = "1#";
+    String month = "1";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInNonNumeralSymbolInMonth() {
+    String day = "1";
+    String month = "#";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
+
+    assertEquals(expectedObj.isPassing(), returnObj.isPassing());
+    assertEquals(expectedObj.getMessage(), returnObj.getMessage());
+  }
+
+  @Test
+  public void year_passInNonNumeralSymbolInMonthAndDay() {
+    String day = "1#";
+    String month = "#";
+    String year = "2023";
+
+    ValidateResultObject expectedObj = new ValidateResultObject(true, "");
+
+    ValidateResultObject returnObj = validate.year(day, month, year);
 
     assertEquals(expectedObj.isPassing(), returnObj.isPassing());
     assertEquals(expectedObj.getMessage(), returnObj.getMessage());
