@@ -44,6 +44,19 @@ public class CalculateBirthday {
         birthday.setMonth(calculatedMonth + 1);
       }
       return birthday;
+    } else if (monthDifference < 0) {
+      birthday.setYear(currentYear - year);
+      Integer calculatedMonth = currentMonth - month;
+      birthday.setMonth(calculatedMonth);
+      if (dayDifference == 0) {
+        birthday.setDay(0);
+      } else if (dayDifference > 0) {
+        birthday.setDay(currentDate.getActualMaximum(Calendar.DATE) - day + currentDay);
+        birthday.setMonth(calculatedMonth - 1);
+      } else {
+        birthday.setDay(currentDay - day);
+      }
+      return birthday;
     }
 
     return birthday;

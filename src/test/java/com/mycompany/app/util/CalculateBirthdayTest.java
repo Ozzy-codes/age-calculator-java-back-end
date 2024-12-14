@@ -131,4 +131,59 @@ public class CalculateBirthdayTest {
     assertEquals(expectedMonth, birthday.getMonth());
     assertEquals(expectedYear, birthday.getYear());
   }
+
+  @Test
+  public void month_less_than_current_month_and_day_is_equal_to_current_day() {
+    Calendar currentDate = Calendar.getInstance();
+    Integer day = currentDate.get(Calendar.DATE);
+    Integer month = currentDate.get(Calendar.MONTH) == 0 ? 12 : currentDate.get(Calendar.MONTH);
+    Integer year = currentDate.get(Calendar.YEAR) - 1;
+    Integer expectedDay = 0;
+    Integer expectedMonth = 1;
+    Integer expectedYear = 1;
+
+    CalculatedBirthday birthday = calculateBirthday.getAge(day, month, year);
+
+    assertEquals(expectedDay, birthday.getDay());
+    assertEquals(expectedMonth, birthday.getMonth());
+    assertEquals(expectedYear, birthday.getYear());
+  }
+
+  @Test
+  public void month_less_than_current_month_and_day_is_greater_than_current_day() {
+    Calendar currentDate = Calendar.getInstance();
+    Integer day = currentDate.get(Calendar.DATE) + 1;
+    Integer month = currentDate.get(Calendar.MONTH) == 0 ? 12 : currentDate.get(Calendar.MONTH);
+    Integer year = currentDate.get(Calendar.YEAR) - 1;
+    currentDate.set(year + 1, month + 1, 0);
+    Integer expectedDay = currentDate.getActualMaximum(Calendar.DATE) - 1;
+    Integer expectedMonth = 0;
+    Integer expectedYear = 1;
+
+    CalculatedBirthday birthday = calculateBirthday.getAge(day, month, year);
+
+    assertEquals(expectedDay, birthday.getDay());
+    assertEquals(expectedMonth, birthday.getMonth());
+    assertEquals(expectedYear, birthday.getYear());
+  }
+
+  @Test
+  public void month_less_than_current_month_and_day_is_less_than_current_day() {
+    Calendar currentDate = Calendar.getInstance();
+    Integer day = currentDate.get(Calendar.DATE) - 1;
+    Integer month = currentDate.get(Calendar.MONTH) == 0 ? 12 : currentDate.get(Calendar.MONTH);
+    Integer year = currentDate.get(Calendar.YEAR) - 1;
+    Integer expectedDay = 1;
+    Integer expectedMonth = 1;
+    Integer expectedYear = 1;
+
+    if (day < 1)
+      return;
+
+    CalculatedBirthday birthday = calculateBirthday.getAge(day, month, year);
+
+    assertEquals(expectedDay, birthday.getDay());
+    assertEquals(expectedMonth, birthday.getMonth());
+    assertEquals(expectedYear, birthday.getYear());
+  }
 }
