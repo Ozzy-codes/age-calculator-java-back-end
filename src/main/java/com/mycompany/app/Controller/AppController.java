@@ -3,6 +3,7 @@ package com.mycompany.app.Controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.mycompany.app.model.CalculatedBirthday;
 import com.mycompany.app.model.ValidateResultObject;
 import com.mycompany.app.service.InputService;
 
@@ -37,15 +38,21 @@ public class AppController {
         Map.of("inputDayValue", formDay, "inputMonthValue", formMonth, "inputYearValue", formYear));
 
     Map<String, ValidateResultObject> resultMap = is.validate(formDay, formMonth, formYear);
+    model.put("dayResult", resultMap.get("dayResultObject"));
+    model.put("monthResult", resultMap.get("monthResultObject"));
+    model.put("yearResult", resultMap.get("yearResultObject"));
 
     if (!resultMap.get("dayResultObject").isPassing() || !resultMap.get("monthResultObject").isPassing()
         || !resultMap.get("yearResultObject").isPassing()) {
-      model.put("dayResult", resultMap.get("dayResultObject"));
-      model.put("monthResult", resultMap.get("monthResultObject"));
-      model.put("yearResult", resultMap.get("yearResultObject"));
       ctx.header("hx-reswap", "none");
       ctx.status(422);
-      ctx.render("ResponseInput.jte", model);
+      ctx.render("FailValidation.jte", model);
+      return;
     }
+
+    CalculatedBirthday birthday = is.getAge(formDay, formMonth, formYear);
+    model.put("birthday", birthday);
+
+    ctx.render("PassValidation.jte", model);
   }
 }
